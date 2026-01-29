@@ -1,0 +1,142 @@
+/* --- 1. Biến màu sắc & Cấu hình chung --- */
+:root {
+    --bg-color: #F4F4F0;
+    /* Màu kem giấy (Pastel Beige) */
+    --surface: #FFFFFF;
+    --border-black: 3px solid #000000;
+    /* Viền đen dày đặc trưng */
+    --shadow-hard: 5px 5px 0px #000000;
+    /* Bóng cứng không mờ */
+
+    /* Màu nổi bật (High Contrast) */
+    --accent-yellow: #FFDC5E;
+    --accent-pink: #FF6B6B;
+    --accent-blue: #5E9BFF;
+    --accent-green: #90F090;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: #000;
+    font-family: 'Courier New', Courier, monospace;
+    /* Font kiểu máy đánh chữ hoặc Bold Sans */
+    font-weight: 600;
+}
+
+/* --- 2. Brutal Card (Khối vuông vức) --- */
+.brutal-card {
+    background: var(--surface);
+    border: var(--border-black);
+    box-shadow: var(--shadow-hard);
+    padding: 20px;
+    border-radius: 0px;
+    /* Vuông thành sắc cạnh hoặc bo rất ít */
+    transition: all 0.2s ease;
+}
+
+.brutal-card:hover {
+    transform: translate(-2px, -2px);
+    /* Nhích lên khi hover */
+    box-shadow: 7px 7px 0px #000;
+    /* Bóng dài ra */
+}
+
+/* --- 3. Buttons (Nút bấm kiểu Retro) --- */
+.btn-brutal {
+    background: var(--accent-yellow);
+    color: #000;
+    border: var(--border-black);
+    box-shadow: 4px 4px 0px #000;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 0;
+    transition: 0.1s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-brutal:hover {
+    transform: translate(2px, 2px);
+    /* Hiệu ứng "nhấn nút" thật */
+    box-shadow: 2px 2px 0px #000;
+    background: #ffe58f;
+    color: #000;
+}
+
+.btn-danger-brutal {
+    background: var(--accent-pink);
+}
+
+.btn-success-brutal {
+    background: var(--accent-green);
+}
+
+/* --- 4. Navbar Admin --- */
+.navbar-brutal {
+    background: var(--surface);
+    border-bottom: var(--border-black);
+    padding: 15px 0;
+}
+
+/* --- 5. Table (Bảng dữ liệu) --- */
+.table-brutal {
+    width: 100%;
+    border-collapse: collapse;
+    border: var(--border-black);
+    background: white;
+}
+
+.table-brutal th {
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 15px;
+    border: 1px solid #fff;
+}
+
+.table-brutal td {
+    border: 2px solid #000;
+    padding: 12px;
+    font-weight: bold;
+}
+
+.badge-brutal {
+    border: 2px solid #000;
+    padding: 5px 10px;
+    background: #fff;
+    font-size: 0.8rem;
+    box-shadow: 2px 2px 0px #000;
+}
+
+/* --- 6. Form Brutal (Thêm mới) --- */
+.form-control-brutal {
+    border: 3px solid #000;
+    border-radius: 0;
+    /* Vuông góc */
+    padding: 12px;
+    background: #fff;
+    font-weight: bold;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
+    /* Bóng nhẹ */
+    transition: 0.2s;
+}
+
+.form-control-brutal:focus {
+    outline: none;
+    box-shadow: 6px 6px 0px #000;
+    /* Bóng cứng khi bấm vào */
+    border-color: #000;
+    transform: translate(-2px, -2px);
+}
+
+.form-label-brutal {
+    text-transform: uppercase;
+    font-weight: 900;
+    margin-bottom: 8px;
+    display: block;
+    background: var(--accent-yellow);
+    display: inline-block;
+    padding: 2px 5px;
+    border: 2px solid #000;
+}

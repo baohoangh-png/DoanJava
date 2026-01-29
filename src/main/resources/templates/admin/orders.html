@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/admin-brutal.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar-brutal mb-5">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="h2 fw-bold text-decoration-none text-black" href="/admin"
+                style="background: var(--accent-yellow); padding: 5px 10px; border: 3px solid #000;">
+                ADMIN_PANEL_V1
+            </a>
+
+            <div>
+                <a href="/admin/products" class="btn-brutal me-3">SẢN PHẨM</a>
+                <a href="/admin/orders" class="btn-brutal btn-success-brutal me-3">ĐƠN HÀNG</a>
+                <a href="/" class="btn-brutal btn-danger-brutal">EXIT -></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end mb-4">
+            <h1 style="font-size: 3rem; text-decoration: underline; text-decoration-thickness: 5px;">
+                QUẢN LÝ ĐƠN HÀNG
+            </h1>
+            <div class="brutal-card p-2 bg-white">
+                Tổng đơn: <b th:text="${orders.size()}">0</b>
+            </div>
+        </div>
+
+        <div class="brutal-card p-0 overflow-hidden">
+            <table class="table-brutal mb-0">
+                <thead>
+                    <tr>
+                        <th>#ID</th>
+                        <th>THỜI GIAN</th>
+                        <th>KHÁCH HÀNG</th>
+                        <th>LIÊN HỆ</th>
+                        <th>TỔNG TIỀN</th>
+                        <th>TRẠNG THÁI</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="order : ${orders}">
+                        <td th:text="${'#' + order.id}"></td>
+                        <td th:text="${#dates.format(order.orderDate, 'dd/MM/yyyy')}"></td>
+                        <td th:text="${order.customerName}" class="text-uppercase"></td>
+                        <td>
+                            <div style="font-size: 0.9em">📞 <span th:text="${order.phone}"></span></div>
+                            <div style="font-size: 0.8em; color: #555;" th:text="${order.address}"></div>
+                        </td>
+                        <td style="color: blue; font-size: 1.1em;"
+                            th:text="${#numbers.formatDecimal(order.totalPrice, 0, 'POINT', 0, 'COMMA')} + ' đ'"></td>
+                        <td>
+                            <span class="badge-brutal"
+                                th:style="${order.status == 'PENDING' ? 'background:yellow' : 'background:#90F090'}"
+                                th:text="${order.status}">
+                            </span>
+                        </td>
+                        <td>
+                            <a href="#" class="btn-brutal py-1 px-2"
+                                style="font-size: 0.8rem; background: white;">XEM</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title th:text="${product.name} + ' - BHstore'">Chi tiết sản phẩm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="/css/modern-2026.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg glass-nav fixed-top navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fs-3" href="/">BHstore <span class="text-teal">●</span></a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a href="/cart" class="btn btn-teal position-relative">
+                            🛒 <span class="visually-hidden">Cart</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ms-3" sec:authorize="isAuthenticated()">
+                        <span class="text-muted">Hi, <b class="text-white" sec:authentication="name">User</b></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5 mb-5" th:if="${product != null}">
+
+        <nav aria-label="breadcrumb" class="mt-4 mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/" class="text-muted text-decoration-none">Trang chủ</a></li>
+                <li class="breadcrumb-item active text-teal" aria-current="page" th:text="${product.name}">Tên giày</li>
+            </ol>
+        </nav>
+
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <div
+                    class="bento-card h-100 d-flex align-items-center justify-content-center p-0 overflow-hidden position-relative">
+                    <div class="position-absolute top-0 start-0 m-4 z-2">
+                        <span class="badge badge-glass rounded-pill px-3 py-2">Best Seller</span>
+                    </div>
+
+                    <img th:src="${product.image}" class="img-fluid w-100 h-100"
+                        style="object-fit: cover; min-height: 500px; transition: transform 0.5s ease;"
+                        alt="Product Image">
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="bento-card h-100 p-5 d-flex flex-column justify-content-center">
+
+                    <h5 class="text-teal text-uppercase letter-spacing-2 mb-2">Sneaker Authentic</h5>
+                    <h1 class="display-5 fw-bold mb-3" th:text="${product.name}">Tên sản phẩm</h1>
+
+                    <div class="d-flex align-items-center mb-4">
+                        <h2 class="text-white fw-bold me-3 mb-0"
+                            th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 0, 'COMMA')} + ' đ'">
+                        </h2>
+                        <span class="badge bg-danger rounded-pill">-10% SALE</span>
+                    </div>
+
+                    <p class="text-muted lead mb-5" th:text="${product.description}">
+                        Mô tả sản phẩm chi tiết...
+                    </p>
+
+                    <hr class="border-secondary mb-5 opacity-25">
+
+                    <form action="/cart/add" method="post">
+                        <input type="hidden" name="productId" th:value="${product.id}">
+
+                        <div class="row g-3">
+                            <div class="col-4">
+                                <label class="text-muted small mb-1">Số lượng</label>
+                                <input type="number" name="quantity"
+                                    class="form-control form-control-glass text-center fw-bold fs-5" value="1" min="1">
+                            </div>
+                            <div class="col-8 d-flex align-items-end">
+                                <button type="submit" class="btn btn-teal w-100 py-3 fw-bold shadow-lg">
+                                    THÊM VÀO GIỎ 🛒
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="d-flex justify-content-between mt-5 pt-3 border-top border-secondary border-opacity-10">
+                        <div class="text-center">
+                            <i class="bi bi-box-seam text-teal fs-4"></i>
+                            <p class="small text-muted mt-1">Freeship</p>
+                        </div>
+                        <div class="text-center">
+                            <i class="bi bi-shield-check text-teal fs-4"></i>
+                            <p class="small text-muted mt-1">Chính hãng</p>
+                        </div>
+                        <div class="text-center">
+                            <i class="bi bi-arrow-repeat text-teal fs-4"></i>
+                            <p class="small text-muted mt-1">Đổi trả 7 ngày</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5 pt-5">
+            <h3 class="mb-4">Có thể bạn thích</h3>
+        </div>
+
+    </div>
+
+    <div class="container text-center mt-5 pt-5" th:unless="${product != null}">
+        <h2 class="text-muted">Sản phẩm không tồn tại!</h2>
+        <a href="/" class="btn btn-outline-light mt-3">Quay về trang chủ</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</body>
+
+</html>

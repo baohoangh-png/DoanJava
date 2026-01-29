@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Thêm/Sửa Sản Phẩm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/admin-brutal.css" rel="stylesheet">
+</head>
+
+<body style="background-color: var(--accent-blue);">
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <div class="brutal-card p-5" style="box-shadow: 15px 15px 0px #000;">
+
+                    <h2 class="text-center mb-5 fw-bold"
+                        style="background: #000; color: #fff; padding: 10px; transform: rotate(-2deg);">
+                        THÔNG TIN SẢN PHẨM
+                    </h2>
+
+                    <form action="/admin/products/save" method="post" th:object="${product}">
+                        <input type="hidden" th:field="*{id}">
+
+                        <div class="mb-4">
+                            <label class="form-label-brutal">Tên sản phẩm</label>
+                            <input type="text" th:field="*{name}" class="form-control form-control-brutal"
+                                placeholder="VÍ DỤ: NIKE AIR FORCE 1" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label-brutal">Giá bán (VNĐ)</label>
+                                <input type="number" th:field="*{price}" class="form-control form-control-brutal"
+                                    placeholder="1000000" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label-brutal">Link Ảnh (URL)</label>
+                                <input type="text" th:field="*{image}" class="form-control form-control-brutal"
+                                    placeholder="HTTPS://..." required>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label-brutal">Mô tả chi tiết</label>
+                            <textarea th:field="*{description}" class="form-control form-control-brutal" rows="4"
+                                placeholder="Viết gì đó thật ngầu vào đây..."></textarea>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-5 pt-3 border-top border-black border-3">
+                            <a href="/admin/products" class="btn-brutal" style="background: white;">&lt; QUAY LẠI</a>
+                            <button type="submit" class="btn-brutal btn-success-brutal px-5 py-3"
+                                style="font-size: 1.2rem;">
+                                LƯU DỮ LIỆU NGAY
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
